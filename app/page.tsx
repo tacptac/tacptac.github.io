@@ -1,5 +1,17 @@
-import Image from 'next/image'
-import styles from './page.module.css'
+"use client";
+import { Text, Box, Container, Stack, Button, Tabs, TabList, Tab, TabPanel, TabPanels } from '@/app/common/index'
+
+type MyInfo = {
+  title: string,
+  body: string
+}
+
+const myinfo: MyInfo[] = [
+  {
+    title: "game designer",
+    body: "testest"
+  }
+]
 
 const shuffleArray = (array:string[]) => {
   const cloneArray = [...array]
@@ -16,13 +28,41 @@ const shuffleArray = (array:string[]) => {
 }
 
 export default function Home() {
-  const element = shuffleArray(["game designer", "android developer", "SF", "magazine", "anime", "sao", "web design", "next.js", "kyoto", "z4 coupe 3.0si", "movie", "english", "ramen"]);
+  const element = ["game designer", "android developer"];
   let myinfo = ""
-  element.forEach((e) => myinfo+=e+" / ")
+  element.forEach((e) => myinfo += e + " / ")
+  
+  let selected = ""
+
   return (
-    <div>
-      <p><strong>tacptac</strong></p>
-      {myinfo}
-    </div>
+    <Container as="main" maxW="container.sm" my="8">
+      <Stack align='start'>
+        <Text fontSize='2xl'><strong>tacptac</strong></Text>
+        <Text fontSize='md'>game designer</Text>
+        <Tabs variant='unstyled' align='start'>
+          <TabList>
+            <Tab _selected={{ color: 'black' }} color='gray.300' paddingEnd='0px' paddingStart='0px'>restaurants</Tab>
+            <Tab _selected={{ color: 'black' }} color='gray.300' paddingEnd='0px'>books</Tab>
+            <Tab _selected={{ color: 'black' }} color='gray.300' paddingEnd='0px'>games</Tab>
+            <Tab _selected={{ color: 'black' }} color='gray.300' paddingEnd='0px'>movies</Tab>
+          </TabList> 
+          <TabPanels>
+            <TabPanel padding='0px'>
+              <p>- monk</p>
+            </TabPanel>
+            <TabPanel padding='0px'>
+              <p>- I, Robot</p>
+            </TabPanel>
+            <TabPanel padding='0px'>
+              <p>- League of Legends</p>
+            </TabPanel>
+            <TabPanel padding='0px'>
+              <p>- pulp fiction</p>
+              <p>- Porco Rosso(紅の豚)</p>
+            </TabPanel>
+          </TabPanels>
+        </Tabs>
+      </Stack>
+    </Container>
   )
 }
